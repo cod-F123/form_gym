@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نتایج انتخاب‌ها</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="box">
+    <h2>📊 خلاصه اطلاعات شما</h2>
+    <div class="row">نام: <span>{{ data.full_name }}</span></div>
+    <div class="row">سن: <span>{{ data.age }}</span></div>
+    <div class="row">قد: <span>{{ data.height }} سانتی‌متر</span></div>
+    <div class="row">وزن: <span>{{ data.weight }} کیلوگرم</span></div>
+    <div class="row">هدف: <span>{{ data.goal }}</span></div>
+    <div class="row">روزهای تمرین: <span>{{ data.days }}</span></div>
+
+    <div style="margin-top:2rem; text-align:center;">
+      <a href="/">⬅ بازگشت به فرم</a>
+    </div>
+  </div>
+</body>
+</html>
