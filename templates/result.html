@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نتایج انتخاب‌ها</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+{% extends 'base.html' %}
+  {% block title %}نتایج انتخاب‌ها{% endblock title %}
+
+  {% block content %}
   <div class="box">
     <h2>📊 خلاصه اطلاعات شما</h2>
     <div class="row">نام: <span>{{ data.full_name }}</span></div>
@@ -20,5 +15,4 @@
       <a href="/">⬅ بازگشت به فرم</a>
     </div>
   </div>
-</body>
-</html>
+{% endblock content %}

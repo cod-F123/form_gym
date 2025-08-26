@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>فرم برنامه بدنسازی</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}فرم برنامه بدنسازی{% endblock title %}
+
+  {% block content %}
   <div class="container">
     <!-- سمت فرم -->
     <div class="form-box">
@@ -60,6 +54,10 @@
             <option>۷ روز</option>
           </select>
         </div>
+        <!-- Step 7 -->
+        <div class="step">
+          پس از زدن زوی دکمه درخواست برنامه به صفحه پرداخت منتقل می شوید پس از پرداخت پیامکی هاوی اطلاعات برنامه به شماره شما ارسال خواهد شد
+        </div>
 
         <!-- Buttons -->
         <div class="btns">
@@ -72,7 +70,9 @@
     <!-- سمت تصویر -->
     <div class="image-side"></div>
   </div>
-
+  <div class="loading-box">
+    <span class="loader"></span>
+  </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     let currentStep = 0;
@@ -108,6 +108,7 @@
       // اگر معتبر بود خطا رو پاک کنه
       $(currentInput).removeClass("error");
       $(currentInput).siblings(".error-text").remove();
+      $(".loading-box").removeClass("loading-box-active")
 
       if(currentStep < steps.length-1){
         currentStep++;
@@ -116,6 +117,7 @@
         /*alert("🎉 اطلاعات شما ثبت شد!");
         $("#fitnessForm")[0].reset();*/
         $("#fitnessForm").submit();
+        $(".loading-box").addClass("loading-box-active")
         currentStep = 0;
         showStep(currentStep);
       }
@@ -130,5 +132,5 @@
 
 
   </script>
-</body>
-</html>
+
+{% endblock content %}
