@@ -9,14 +9,31 @@
     </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    
+    <div class="container-ab">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                            {{message}}
+                            <button class="close-btn">X</button>
+                    </div>
+                      
+                    {% endfor %}
+                  {% endif %}
+        {% endwith %}
+    </div>
     {% block content %}
         
     {% endblock content %}
-
+<script>
+  $(document).on("click",".close-btn",function(e){
+    e.preventDefault();
+    $(this).closest(".alert").addClass("hidden");
+  })
+</script>
 </body>
 </html>
         

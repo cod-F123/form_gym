@@ -74,12 +74,19 @@ input, select, textarea {
 
 select{
     width: 100% !important;
+    
+}
+
+textarea{
+    max-height: 100px !important;
+    max-width: 92.6% !important;
+    resize: none;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: 2px solid #38bdf8;
 }
-button {
+.btn-primary {
     background: linear-gradient(90deg,#38bdf8,#0ea5e9);
     border: none;
     color: #fff;
@@ -90,7 +97,7 @@ button {
     transition: transform 0.2s;
     font-family: vazir;
 }
-button:hover {transform: scale(1.05);}
+.btn-primary:hover {transform: scale(1.05);}
 .btns {display: flex; justify-content: space-between; margin-top: 1.2rem;}
 .image-side {
     flex: 1;
@@ -196,4 +203,68 @@ a {color:#38bdf8; text-decoration:none;}
     50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+
+.btn {
+    padding: 8px 15px !important;
+    border: none;
+    border-radius: 9px !important;
+    outline: none;
+    text-align: center !important;
+    font-family: vazir;
+    font-size: 18px;
+}
+
+.btn-success{
+    background-color: green ;
+    color: #fff;
+    cursor: pointer ;
+    transition:all 200ms ;
+}
+
+.btn-success:hover{
+    background-color: rgb(4, 87, 4);
+}
+
+.container-ab{
+    width: 80%;
+    top: 40px;
+    position: absolute;
+    height: max-content;
+}
+.notice {background:#ffeccf; color:#1f2937; padding:8px 10px; border-radius:8px; margin-bottom:12px; font-size:14px}
+
+.alert{
+    width: 100%;
+    height: max-content;
+    text-align: right;
+    font-family: vazir;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.alert-danger{
+    background-color: #f43f5e;
+    color: #fff;
+}
+
+.alert-success{
+    background-color: green;
+    color: #fff;
+}
+
+.close-btn{
+    border: none;
+    color: #000;
+    background-color: inherit;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
 }

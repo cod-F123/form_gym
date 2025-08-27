@@ -5,64 +5,158 @@
   <div class="container">
     <!-- سمت فرم -->
     <div class="form-box">
-      <h2>📋 فرم برنامه اختصاصی</h2>
-      <div class="progress"><div class="progress-bar"></div></div>
+      <h2>💪 فرم دریافت برنامه و رژیم</h2>
 
-      <form id="fitnessForm" action="."  method="post">
-        <!-- Step 1 -->
+      <p class="notice">⚠️ لطفا به سؤالات زیر با دقت پاسخ دهید</p>
+
+      <form id="fitnessForm" method="POST" novalidate>
+        {{form.csrf_token}}
+        <!-- STEP 1: اطلاعات شخصی -->
         <div class="step active">
           <label>نام و نام خانوادگی *</label>
-          <input type="text" name="full_name" value="{{name}}" required>
+          <input type="text" name="full_name" required data-error="نام خود را وارد کنید">
+
+          <label>شماره همراه *</label>
+          <input type="tel" name="phone" required pattern="^\+?\d[\d\s-]{7,}$" data-error="شماره همراه معتبر وارد کنید" placeholder="مثلاً: 0912xxxxxxx">
+
+          <label>ایمیل شخصی *</label>
+          <input type="email" name="email" required data-error="ایمیل معتبر وارد کنید" placeholder="you@example.com">
         </div>
-        <!-- Step 2 -->
+
+        <!-- STEP 2: هدف و مشخصات -->
         <div class="step">
-          <label>سن *</label>
-          <input type="number" name="age" min="10" max="85" required>
-        </div>
-        <!-- Step 3 -->
-        <div class="step">
-          <label>قد (سانتی‌متر) *</label>
-          <input type="number" name="height" min="100" max="230" required>
-        </div>
-        <!-- Step 4 -->
-        <div class="step">
-          <label>وزن (کیلوگرم) *</label>
-          <input type="number" name="weight" min="35" max="220" required>
-        </div>
-        <!-- Step 5 -->
-        <div class="step">
-          <label>هدف اصلی *</label>
-          <select name="goal" required>
+          <label>هدف از رژیم غذایی و تمرین*</label>
+          <select name="goal" required data-error="هدف را انتخاب کنید">
             <option value="">انتخاب کنید</option>
-            <option value="کاهش زن">کاهش وزن</option>
+            <option>کاهش وزن</option>
             <option>افزایش عضله</option>
-            <option>قدرت بیشتر</option>
-            <option>سلامت عمومی</option>
+            <option>ثابت نگه داشتن وزن</option>
+            <option>اصلاح عادات غذایی</option>
           </select>
+
+          <label>سن *</label>
+          <input type="number" name="age" min="10" max="100" required data-error="سن معتبر وارد کنید">
+
+          <label>قد (سانتی‌متر) *</label>
+          <input type="number" name="height" min="100" max="230" required data-error="قد معتبر وارد کنید">
+
+          <label>وزن (کیلوگرم) *</label>
+          <input type="number" name="weight" min="20" max="300" required data-error="وزن معتبر وارد کنید">
         </div>
-        <!-- Step 6 -->
+
+        <!-- STEP 3: وضعیت پزشکی -->
         <div class="step">
-          <label>چند روز در هفته می‌تونی تمرین کنی؟ *</label>
-          <select name="days" required>
+          <label>بیماری خاص (مثلاً: تیروئید، دیابت، چربی خون و ...)</label>
+          <textarea name="medical_conditions" rows="3" placeholder="در صورت وجود بنویسید"></textarea>
+
+          <label>استفاده از دارو</label>
+          <select name="medication_use">
             <option value="">انتخاب کنید</option>
-            <option>۱ روز</option>
-            <option>۲ روز</option>
-            <option>۳ روز</option>
-            <option>۴ روز</option>
-            <option>۵ روز</option>
-            <option>۶ روز</option>
-            <option>۷ روز</option>
+            <option>ندارد</option>
+            <option>دارو مصرف می‌کند — توضیح در بالا</option>
+          </select>
+
+          <label>حساسیت غذایی</label>
+          <textarea name="food_allergies" rows="2" placeholder="مثلاً: شیر، آجیل، ..."></textarea>
+        </div>
+
+        <!-- STEP 4: فعالیت و باشگاه -->
+        <div class="step">
+          <label>در صورت فعالیت در باشگاه - ساعت شروع تمرین</label>
+          <input type="time" name="gym_start">
+
+          <label>ساعت پایان تمرین</label>
+          <input type="time" name="gym_end">
+
+          <label>میزان فعالیت ورزشی</label>
+          <select name="activity_level" required data-error="میزان فعالیت را انتخاب کنید">
+            <option value="">انتخاب کنید</option>
+            <option>خیلی کم (تقریباً بدون تمرین)</option>
+            <option>کم (1-2 جلسه در هفته)</option>
+            <option>متوسط (3-4 جلسه در هفته)</option>
+            <option>زیاد (5+ جلسه در هفته)</option>
+          </select>
+
+          <label>شغل (عنوان)</label>
+          <input type="text" name="job_title" max="200" placeholder="مثلاً: کارمند، معلم">
+
+          <label>میزان فعالیت کاری</label>
+          <select name="job_activity">
+            <option value="">انتخاب کنید</option>
+            <option>نشسته (دفتر، رانندگی)</option>
+            <option>نسبتاً فعال (کمی راه رفتن)</option>
+            <option>فعال (کار فیزیکی)</option>
           </select>
         </div>
-        <!-- Step 7 -->
+
+        <!-- STEP 5: زمان خواب و وعده‌ها -->
         <div class="step">
-          پس از زدن زوی دکمه درخواست برنامه به صفحه پرداخت منتقل می شوید پس از پرداخت پیامکی هاوی اطلاعات برنامه به شماره شما ارسال خواهد شد
+          <label>ساعت خواب</label>
+          <input required type="time" name="sleep_time">
+
+          <label>ساعت بیداری</label>
+          <input required type="time" name="wake_time">
+
+          <label>ساعت مصرف صبحانه</label>
+          <input required type="time" name="breakfast_time">
+
+          <label>ساعت مصرف نهار</label>
+          <input required type="time" name="lunch_time">
+
+          <label>ساعت مصرف شام</label>
+          <input required type="time" name="dinner_time">
+
+          <label>ساعت میان‌وعده صبح</label>
+          <input type="time" name="snack_morning_time">
+
+          <label>ساعت میان‌وعده عصر</label>
+          <input type="time" name="snack_evening_time">
+        </div>
+
+        <!-- STEP 6: سوابق رژیم / مکمل -->
+        <div class="step">
+          <label>تا حالا رژیم گرفته‌اید؟</label>
+          <select name="previous_diet" required>
+            <option value="">انتخاب کنید</option>
+            <option>بله</option>
+            <option>خیر</option>
+          </select>
+
+          <label>مکمل مصرف کرده‌اید؟</label>
+          <select name="supplement_used" required>
+            <option value="">انتخاب کنید</option>
+            <option>بله</option>
+            <option>خیر</option>
+          </select>
+
+          <label>تمایل به مصرف مکمل دارید؟</label>
+          <select name="willing_supplement" required>
+            <option value="">انتخاب کنید</option>
+            <option>بله</option>
+            <option>خیر</option>
+            <option>با مشورت مربی/متخصص</option>
+          </select>
+        </div>
+
+        <!-- STEP 7: عادات غذایی (صبحانه، ناهار، شام، میان‌وعده‌ها) -->
+        <div class="step">
+          <label>معمولاً برای صبحانه چه چیزهایی میل می‌کنید و چقدر</label>
+          <textarea name="breakfast_items" rows="3" required placeholder="مثلاً: پنیر و نان (۲ برش) و چای"></textarea>
+
+          <label>معمولاً برای ناهار چه چیزهایی میل می‌کنید و چقدر</label>
+          <textarea name="lunch_items" rows="3" required></textarea>
+
+          <label>معمولاً برای شام چه چیزهایی میل می‌کنید و چقدر</label>
+          <textarea name="dinner_items" rows="3" required></textarea>
+
+          <label>چه چیزهایی برای میان‌وعده‌ها استفاده می‌کنید و چقدر</label>
+          <textarea name="snack_items" rows="3" required></textarea>
         </div>
 
         <!-- Buttons -->
         <div class="btns">
-          <button type="button" id="prevBtn">قبلی</button>
-          <button type="button" id="nextBtn">بعدی</button>
+          <button type="button" class="btn-primary" id="prevBtn">« قبلی</button>
+          <button type="button" class="btn-primary" id="nextBtn">بعدی »</button>
         </div>
       </form>
     </div>
@@ -73,7 +167,7 @@
   <div class="loading-box">
     <span class="loader"></span>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <script>
     let currentStep = 0;
     const steps = $(".step");
